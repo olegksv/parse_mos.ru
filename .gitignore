@@ -6,7 +6,7 @@ __pycache__
 db.sqlite3
 
 #Credentials
-credentials.py
+#credentials.py
 
 # Backup files # 
 *.bak
