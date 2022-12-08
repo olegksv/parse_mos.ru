@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% block sider-clock %}
+{% endblock sider-clock %}
+
+
+{% block content %}
+{% block errors %}
+  <div class="row justify-content-center mt-3" >
+                    <div class="col-auto">
+                  
+                      {% if messages %}
+                      
+                      {% for message in messages %}
+
+                      {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" role="alert">
+                          <h2>{{message}}</h2>
+                        </div>
+                      {% else %}
+                      <div class="alert alert-success alert-dismissible " role="alert" id="close_success_message">
+                          <p>Окно будет закрыто через <span id="timer"></span> секунд</p>
+                          <hr>
+                          {{message}}
+                        <button type="button" class="btn-close" id="close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      {% endif %}
+                      
+                      {% endfor %}
+
+                      {%endif%} 
+                      
+                    </div> 
+                </div>
+{% endblock errors %}
+<div class="container d-flex justify-content-center align-items-center " style="width:300px; height:900px;">
+<form class="row w-100 h-50 " method="post" id="login-form">
+    {% csrf_token %}
+    <div class="col p-0">
+        <div class="row justify-content-between">
+            <div class="col">
+                <button class="btn btn-light" disabled="true" id="enter">Войти</button>
+            </div>
+            <div class="col-auto">
+                <button class='btn btn-light' id="reg"> Регистрация</button>
+            </div>    
+        </div>
+            <div class="form-error mt-3">{{form.non_field_errors }}</div>
+                <div class="form-floating mb-3">
+                  <i class="icon-font fa-solid fa-user-tie fa-lg"></i>
+                  {{form.username}}
+                  <label class="form-label" for="{{form.username.id_for_label}}">Имя пользователя</label>
+                </div>
+                <div class="form-floating mb-2">
+                  <i class="icon-font fa-solid fa-lock fa-lg"></i>
+                  {{form.password}}               
+                  <i class="fa-regular fa-eye-slash fa-lg " id="eye-show"></i>       
+                  <label class="form-label" for="{{form.password.id_for_label}}">Пароль</label>                
+                </div>
+                    <div class="mb-2 ">
+                        {{form.remember_me}}
+                        <label class="form-check-label" for="{{form.remember_me.id_for_label}}">Запомнить меня</label> 
+                        {% comment %} <input type="checkbox" class="form-check-input"  name="remember_me" id="remember_me">
+                        <label class="form-check-label" for="remember_me">Запомнить меня</label> {% endcomment %}
+                    </div> 
+                    <div class="row justify-content-end m-0">
+                        <button type="submit" class="btn btn-primary " id="log_btn">Войти</button>
+                    </div>
+                    
+                    <p><a class="forget_pass" href="{% url 'password_reset' %}">Забыли пароль?</a></p>
+            </div>
+    </div>
+</form>
+</div>
+{% endblock content %}

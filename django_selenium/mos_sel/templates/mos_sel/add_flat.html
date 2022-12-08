@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+{% block errors %}
+  <div class="row justify-content-center mt-3">
+                    <div class="col-auto">
+                  
+                      {% if messages %}
+                      
+                      {% for message in messages %}
+
+                      {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" role="alert">
+                          <h2>{{message}}</h2>
+                        </div>
+                      {% else %}
+                      <div class="alert alert-success alert-dismissible " role="alert" id="close_success_message">
+                          <p>Окно будет закрыто через <span id="timer"></span> секунд</p>
+                          <hr>
+                          {{message}}
+                        <button type="button" class="btn-close" id="close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      {% endif %}
+                      
+                      {% endfor %}
+
+                      {%endif%} 
+                      
+                    </div> 
+                </div>
+{% endblock errors %}
+
+<form class="row g-3 justify-content-center mt-0 " method="post" id="SerializedFormData" >
+       
+        <div class="row justify-content-center mb-3">
+            <div class="col-auto">
+                <h2>Добавить квартиру</h2> 
+            </div>
+        </div> 
+        {%csrf_token%} 
+        <div class="row justify-content-center">
+            <div class="col-auto">
+                        {% for error in form.name_flat.errors %}
+                            <ul class="errorlist">
+                                <li><i class="fa-solid fa-circle-exclamation"></i> {{error}}</li>
+                            </ul>
+                        {% endfor %}
+            </div>
+        </div>
+        <div class="row justify-content-center">
+            <div class="col-2">
+                        {% for field in form %}
+                        {{field}}          
+                        {% endfor %} 
+            
+            </div>   
+        
+                <div class="col-auto"> 
+                    <button type="submit" class="btn btn-primary" id="success_message" >Сохранить</button>
+                </div>              
+        </div>            
+</form>    
+
+{% endblock  %}

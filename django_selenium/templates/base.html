@@ -1,0 +1,117 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Главная страница {% endblock title %} </title>
+    <!--Bootsrap 5 css-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    
+    <!--Font-awesome-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!--Favicon-->
+    <link rel="shortcut icon" href="{% static 'img/favicon1.ico' %}" type="image/x-icon"/>
+
+    <!--Logo-->
+    {% comment %} <link rel="icon" href="{% static 'img/logo.png' %}"> {% endcomment %}
+
+    <!--Static css-->
+    <link rel="stylesheet" href="{% static 'css/mycss.css' %}">
+    
+
+  
+ 
+
+  </head>
+
+  
+  <body>
+ {% include "inc/_nav.html" %}
+{% comment %}  {% include "403.html" %} {% endcomment %}
+     
+
+
+                
+       
+
+               
+
+
+
+
+{% block sider-clock %}
+<div class="card border-light mx-3  mt-3" id="calendar"  style="width: 10rem" >
+                  <img src="{% static 'img/calendar5.png' %}" class="card-img-top" alt="clock">
+                  <div class="card-body p-0 rounded-bottom" id="side_content" >
+                    <p class="card-text" >
+                          <div class="d-flex flex-column text-center mx-3  ">
+                          <div class="row align-items-end py-1  pb-0 mb-0">
+                          <strong>
+                            <div class="col">
+                              <a class="nav-link" id="date"></a>
+                            </div>
+                          </div>
+                            <div class="row align-items-end">
+                              <div class="col">
+                                <a class="nav-link" id="clock_day"></a>
+                            </div>
+                            </strong>
+                            </div>
+                          </div>
+                    </p>
+                   
+                  </div>
+                </div>
+{% endblock sider-clock %}
+
+
+
+                     
+{% block content %}                            
+{% endblock content %}  
+                
+
+          
+
+{% block sidebar %} 
+{% endblock sidebar %}
+ 
+              
+           
+   
+
+
+
+            
+
+             
+              
+                
+         
+    
+     
+    
+    <!--Bootstrap JS-->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js" integrity="sha512-pHVGpX7F/27yZ0ISY+VVjyULApbDlD0/X0rgGbTqCE7WFW5MezNTWG/dnhtbBuICzsd0WQPgpE4REBLv+UqChw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script src="{% static 'js/tooltip.js' %}"></script>
+    <script src="{% static 'js/btn_disable_enter.js' %}"></script>
+    <script src="{% static 'js/show_hide_pass.js' %}"></script>
+    <script src="{% static 'js/close_success_register_form.js' %}"></script>
+    <script src="{% static 'js/btn-disable_reg.js' %}"></script>
+    <script src="{% static 'js/mask_currency.js' %}"></script> 
+    <script src="{% static 'js/close_success_mess.js' %}"></script>
+    <script src="{% static 'js/clock.js' %}"></script>
+    <script src="{% static 'js/close_auto_alert.js' %}"></script>
+    
+  </body>
+      
+</html>

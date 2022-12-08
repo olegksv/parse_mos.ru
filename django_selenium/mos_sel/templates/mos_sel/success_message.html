@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% block errors %}
+  <div class="row justify-content-center mt-3" id="success_register_message">
+                    <div class="col-auto">
+                  
+                      {% if messages %}
+                      
+                      {% for message in messages %}
+
+                      {% if message.tags == 'error' %}
+                        <div class="alert alert-danger" role="alert">
+                          <h2>{{message}}</h2>
+                        </div>
+                      {% else %}
+                      <div class="alert alert-success alert-dismissible " role="alert" id="close_success_message">
+                          <p>Окно будет закрыто через <span id="timer"></span> секунд</p>
+                          <hr>
+                          {{message}}
+                        <button type="button" class="btn-close" id="close" data-bs-dismiss="alert" aria-label="Close"></button>
+                      </div>
+                      {% endif %}
+                      
+                      {% endfor %}
+
+                      {%endif%} 
+                      
+                    </div> 
+                </div>
+{% endblock errors %}
+{% endblock content %}
