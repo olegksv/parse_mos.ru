@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}
+Каталог услуг
+{% endblock title %}
+{% block sidebar %}
+<div class="container overflow-hidden">
+    <div class="row justify-content-center">
+        <div class="col-auto">
+            <div class="card-header text-center">
+                 <h2>Каталог услуг</h2>
+            </div>
+            <div class="list-group list-group-horizontal">
+                <a href='{% url "Get_epd" %}' class="list-group-item list-group-item-action" >Получить и оплатить единый платежный документ (ЕПД)</a>  
+            </div>
+                
+        </div>
+    </div>
+</div>
+{% endblock sidebar %}

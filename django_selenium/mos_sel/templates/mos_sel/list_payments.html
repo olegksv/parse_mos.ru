@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}
+Список оплат
+{% endblock title %}
+{% block sider-clock %}
+{% endblock sider-clock %}
+
+{% block sidebar %}
+<div class="row m-0" id="table_payments">
+<table class="table table-lg table-hover" id="table_row">
+  
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Код плательщика</th>
+      <th scope="col">Название квартиры</th>
+      <th scope="col" id="period">Выставленные счета c {{per_start}} по {{per_end}}</th>
+      <th scope="col">Сумма счета</th>
+      <th scope="col">Квитанция</th>
+      <th scope="col">Сумма оплачена</th>
+      <th scope="col">Дата оплаты</th>
+    </tr>
+  </thead>
+  <div id="tbody">
+    <tbody>
+      {% for field in fields  %}
+      <tr>
+        <td scope="row">{{ forloop.counter }} </td>
+        <td>{{field.cod_platelshika}}</td>
+        <td name="name_flat" id="name_fl" data-fl="{{field.flats_id}}">{{field.name_flat}}</td>
+        <td>{{field.period_oplaty|date:"b Y"|capfirst}}</td>
+        <td>{{field.summa}}</td>
+        {% if field.bill_save_pdf == "----" %}
+        <td>{{field.bill_save_pdf}}</td>
+        {% else %}
+        <td><a class="" href="{{field.bill_save_pdf.url}}">{{field.bill_save_pdf}}</a></td>
+        {% endif %}
+        <td>{{field.amount_of_real}}</td>
+        <td>{{field.date_of_payment|default_if_none:'<i class="fa-solid fa-calendar"></i>'}}</td>
+        <td>
+       
+        <button type='submit' id="payment_modal" class='btn btn-success btn-sm'  data-bs-toggle="modal" data-bs-target="#payment{{field.pk}}" data-payment-id="{{ field.pk }}"><i class="fa-solid fa-sack-dollar"></i> оплатить</button>
+         {% include "mos_sel/update_modal.html" %}
+        {% comment %} <a href="{% url 'AddPayment' field.pk %}">
+        <button type='button' class='btn btn-success btn-sm' id="payment" data-bs-toggle="modal" data-bs-target="#payment{{field.pk}}"><i class="fa-solid fa-sack-dollar"></i> оплатить</button>
+        </a> {% endcomment %}
+       {% comment %}  <a href="{% url 'AddPayment' field.pk %}">
+        <button type='button' class='btn btn-success btn-sm' id="payment" ><i class="fa-solid fa-sack-dollar"></i> оплатить</button>
+        </a> {% endcomment %}
+        {% comment %} <form method="post" action="{% url 'AddPayment' field.pk %}">
+        {% csrf_token %}
+         <div class="modal fade" id="payment{{field.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="paymentLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width:auto">
+                    <div class="modal-header" >
+                        <h5 class="modal-title "  id="paymentLabel">Оплата по квартире {{field.name_flat}}&nbsp;за {{field.period_oplaty|date:"F Y"}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{% url 'AddPayment' field.pk %}" method="post">
+                                        {% csrf_token %}
+                                        
+                                        <input type="hidden" name=per_start value="{{per_start}}">
+                                        <input type="hidden" name=per_end value="{{per_end}}">
+                                            {{form.amount_of_real}}
+                                            {{form.date_of_payment}}
+                                       
+                                        <div class="modal-footer">
+                                                <button type="submit" id="payment_modal" name="payment_modal" class="btn btn-success" ><i class="fa-solid fa-money-check-dollar"></i>  Оплатить</button>
+                                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" ><i class="fa-regular fa-circle-xmark"></i> Закрыть</button>
+                                        </div>
+                                    </form>
+                                 </div>    
+                </div>
+            </div>
+        </div>
+        <button type='button' class='btn btn-success btn-sm' id="payment" name="payment" data-bs-toggle="modal" data-bs-target="#payment{{field.pk}}"><i class="fa-solid fa-sack-dollar"></i> оплатить</button>
+      </form> {% endcomment %}
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </div>
+</table>
+</div>
+
+
+<div class="d-flex justify-content-center" id="quantity_payments">
+<button type="submit" name="submit" class="btn btn-primary show_more " id="show_more">
+  <div id="spinner-box">
+    <span class="spinner-border spinner-border-sm not-visible" id="spinner-circle" role="status" aria-hidden="true"></span>
+    <span class="show_get">Получить ещё</span> 
+  </div>  
+ 
+  
+</button>
+</div>
+
+
+{% endblock sidebar %}
+

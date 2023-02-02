@@ -10,6 +10,10 @@ urlpatterns= [
     path('password_reset/confirm/<uidb64>/<token>/', PasswordResetConfirmView.as_view(template_name='mos_sel/password_reset_confirm.html', form_class=MySetPasswordForm),name="password_reset_confirm"),
     path('password_reset/complete/', PasswordResetCompleteView.as_view(template_name='mos_sel/password_reset_complete.html'),name="password_reset_complete"),
     path('register/',Register.as_view(),name='Register'),
+    path('cat_uslug/',Cat_uslug.as_view(),name="Cat_uslug"),
+    path('choose_flats/',Get_epd.as_view(),name="Get_epd"),
+    path('get_list_epd/',Get_List_Epd.as_view(),name="Get_List_Epd"),
+    
     path('create_flat/',CreateNewFlat.as_view(),name='CreateFlat'),
     path('list_flats/',ListCreatedFlats.as_view(),name='ListCreatedFlats'),
     path('success_message/', SuccessMessage.as_view(),name='SuccessMessage'),
@@ -18,8 +22,7 @@ urlpatterns= [
     
     path('success/',SuccessView.as_view(),name='SuccessView'),
     #path('list/',LstView.as_view(),name='LstView'),
-    path('parse_list/<int:pk>/', PaymentListView.as_view(),name="PaymentListView"),
+    path('parse_list/', PaymentListView.as_view(),name="PaymentListView"),
+    path('show_more_payments/',ShowMorePayments.as_view(),name="show_more_payments"),
+    path('add_payment/<int:pk>/',AddPayment.as_view(),name="AddPayment")
 ]
-
-""" path('login/',AuthView.as_view(),name='AuthView'), """
-""" path('login/',auth,name="auth"), """

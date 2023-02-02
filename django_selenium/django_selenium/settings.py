@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 
 import os
 from pathlib import Path
+from datetime import date
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -27,6 +28,16 @@ SECRET_KEY = 'django-insecure-)0#zyi0)n8)fg_8hxor2axw_z4hz$ej%qe&n6(y9xnxl$^55_)
 DEBUG = True
 
 ALLOWED_HOSTS = []
+
+EMAIL_BACKEND= 'django.core.mail.backends.smtp.EmailBackend'
+
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_USE_SSL = False
+EMAIL_HOST_USER = 'snegir8881@gmail.com'
+EMAIL_HOST_PASSWORD = 'rngx eymi mxpt ygww'
 
 
 # Application definition
@@ -105,15 +116,17 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'ru-ru'
+LANGUAGE_CODE = 'ru'
 
 TIME_ZONE = 'UTC'
 
-USE_I18N = True
+""" USE_I18N = True """
+USE_L10N=True
 
 USE_TZ = True
 
-DATE_INPUT_FORMATS = ['%m-%Y']
+#DATE_INPUT_FORMATS = ['%b %Y']
+DATE_FORMAT=["%b %Y"]
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -123,13 +136,15 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS=[
     os.path.join(BASE_DIR,'django_selenium/static'),
     ]
-SESSION_COOKIE_AGE=60
+SESSION_COOKIE_AGE=6000
 SESSION_EXPIRE_AT_BROWSER_CLOSE=False
 #SESSION_SAVE_EVERY_REQUEST = True
 #SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
 
 MEDIA_ROOT=os.path.join(BASE_DIR,'Bill_pdf')
 MEDIA_URL='/Bill_pdf/'
+BILL_FILES_PATH=os.path.join(MEDIA_ROOT,date.today().strftime("%d-%m-%Y"))
+BILL_MEDIA_URL=os.path.join(MEDIA_URL,date.today().strftime("%d-%m-%Y"))
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 

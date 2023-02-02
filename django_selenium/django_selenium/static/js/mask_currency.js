@@ -8,6 +8,6 @@ $(document).ready(function(){
 });
 
 
-  $(function (){
+/*   $(function (){
     $('input[id^=id_amount_of').before('<i class="fa-solid fa-ruble-sign"></i>');
-  });
+  }); */

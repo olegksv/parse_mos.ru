@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}
+Получение ЕПД
+{% endblock title %}
+{% block sider-clock %}
+{% endblock sider-clock %}
+
+{% block sidebar %}
+<div class="row m-0">
+<table class="table table-lg table-hover ">
+  
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Код плательщика</th>
+      <th scope="col">Название квартиры</th>
+      <th scope="col">Неоплаченные периоды</th>
+      {% comment %} <th scope="col">Периоды оплаты с {{per_start}} по {{per_end}} </th> {% endcomment %}
+      <th scope="col">Сумма счета</th>
+      <th scope="col">Квитанция</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for field in fields  %}
+    <tr>
+      <td scope="row">{{ forloop.counter }} </td>
+      <td>{{field.cod_platelshika}}</td>
+      <td>{{field.name_flat}}</td>
+      <td>{{field.period_oplaty|date:"b Y"|capfirst}}</td>
+      <td>{{field.summa}}</td>
+      {% if field.bill_save_pdf == "----" %}
+      <td>{{field.bill_save_pdf}}</td>
+      {% else %}
+      <td><a class="" href="{{field.bill_save_pdf.url}}">{{field.bill_save_pdf}}</a></td>
+      {% endif %}
+    </tr>
+    
+    {% endfor %}
+  </tbody>
+</table>
+</div>
+{% endblock sidebar %}

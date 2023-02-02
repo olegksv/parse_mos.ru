@@ -1,0 +1,28 @@
+<div class="modal fade" id="payment{{field.pk}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="payment" aria-hidden="true">
+
+<div class="modal-dialog">
+                <div class="modal-content" style="width:auto">
+                    <div class="modal-header" >
+                        <h5 class="modal-title "  id="paymentLabel">Оплата по квартире {{field.name_flat}}&nbsp;за {{field.period_oplaty|date:"F Y"}}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                    
+                                </div>
+                                <div class="modal-body">
+                                <form  action='{% url "AddPayment" field.pk %}' method="post">
+                                        {% csrf_token %}
+                                        {{form.amount_of_real}}
+                                        {{form.date_of_payment}}
+                                </form>
+                                </div> 
+                                  
+                                       
+                                        <div class="modal-footer">
+                                                <button type="submit" id="payment_modal" name="payment_modal" class="btn btn-success" ><i class="fa-solid fa-money-check-dollar"></i>  Оплатить</button>
+                                                <button type="button" class="btn btn-warning" data-bs-dismiss="modal" ><i class="fa-regular fa-circle-xmark"></i> Закрыть</button>
+                                        </div>
+                                
+                                    
+                </div>
+            </div>
+ 
+</div>

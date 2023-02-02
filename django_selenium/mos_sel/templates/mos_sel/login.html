@@ -33,16 +33,18 @@
                 </div>
 {% endblock errors %}
 <div class="container d-flex justify-content-center align-items-center " style="width:300px; height:900px;">
-<form class="row w-100 h-50 " method="post" id="login-form">
+  <form class="row w-100 h-50 " method="post" id="login-form">
     {% csrf_token %}
     <div class="col p-0">
         <div class="row justify-content-between">
             <div class="col">
                 <button class="btn btn-light" disabled="true" id="enter">Войти</button>
             </div>
+            
             <div class="col-auto">
                 <button class='btn btn-light' id="reg"> Регистрация</button>
-            </div>    
+            </div>
+                
         </div>
             <div class="form-error mt-3">{{form.non_field_errors }}</div>
                 <div class="form-floating mb-3">
@@ -67,8 +69,8 @@
                     </div>
                     
                     <p><a class="forget_pass" href="{% url 'password_reset' %}">Забыли пароль?</a></p>
-            </div>
+            
     </div>
-</form>
+  </form>
 </div>
 {% endblock content %}

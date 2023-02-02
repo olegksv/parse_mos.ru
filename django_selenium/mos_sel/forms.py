@@ -1,6 +1,6 @@
 from django import forms
 from django.forms import ValidationError
-from mos_sel.models import Flat
+from mos_sel.models import Flat,PaymentsEpd
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
@@ -118,4 +118,31 @@ class FlatForm(forms.ModelForm):
         labels = {
             'name_flat': ('Название услуги'),
 
+        }
+
+class PaymentsEpdForm(forms.ModelForm):
+    name_flat=forms.ModelChoiceField(queryset=Flat.objects.all(), empty_label="Выберите квартиру",widget=forms.Select(attrs={'class': 'form-control'}))
+
+    def clean_name_flat(self):
+        name_flat = self.cleaned_data['name_flat']
+        if Flat.objects.filter(name_flat=name_flat).exists():
+            raise ValidationError(f'Квартира {name_flat} уже существует')
+        return name_flat
+        
+    class Meta:
+        model=PaymentsEpd
+        fields=['name_flat','amount_of_real','date_of_payment']
+        
+       
+        labels = {
+            'name_flat': ('Название квартиры'),
+            'amount_of_real':("Сумма оплаты"),
+            'date_of_payment':('Дата оплаты')
+
+        }
+
+        widgets={
+            'amount_of_real':forms.NumberInput(attrs={"class":"form-control",'placeholder':'Оплачено 0.00руб'}),
+            'date_of_payment':forms.DateInput(format=('%Y-%m-%d'),attrs={"class":"form-control",
+            'placeholder':'Дата оплаты счета','type':'date'}),
         }

@@ -1,5 +1,5 @@
-from django.shortcuts import render
-from .scraper1   import *
+""" from django.shortcuts import render
+from .scraper.scraper1   import *
 
 class DataMixin:
     def get_login(self) :
@@ -11,4 +11,4 @@ class AuthView:
 
     def get_auth(self,request):
         self.auth=log(URL_LOGIN)
-        return render(request,template_name=self.template_name,)
+        return render(request,template_name=self.template_name,) """

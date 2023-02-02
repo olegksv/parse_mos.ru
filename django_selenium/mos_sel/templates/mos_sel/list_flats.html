@@ -3,19 +3,47 @@
 {% block title %}
 Список квартир
 {% endblock title %}
+
+{% block sider-clock %}
+{% endblock sider-clock %}
+
 {% block sidebar %}
-<div class="container overflow-hidden">
-    <div class="row justify-content-center">
-        <div class="col-auto">
-            <div class="card-header">
-                 <h2>Добавить оплату</h2>
-            </div>
-            {% for flat in flats  %}
-            <div class="list-group list-group-horizontal">
-                <a href="{% url 'PaymentListView' flat.pk %}" class="list-group-item list-group-item-action" >{{ flat.name_flat}}</a>  
-            </div>
-            {% endfor %}    
-        </div>
-    </div>
+<div class="row justify-content-center ">
+        <div class="col-auto p-0">
+            <h2>Список ЕПД</h2>
+        </div>   
 </div>
+<div class="container d-flex  justify-content-center " style="width:500px; height:500px;">
+            <form class="row justify-content-center  w-75 h-50" method="get" id="epd_form" action="{% url 'PaymentListView' %}">
+                    <div class="col p-0" >
+                        <div class="mb-3" >
+                       {{form.name_flat}}                               
+                        <div class="col-12" id="sandbox-container">
+                                <label for="id_period_s">Период с:</label>
+                                    <div class="input-group date" id="period_start">
+                                        <input type="text" class="form-control mb-3"  name="start" id="period_s" />
+                                            <span class="input-group-append ">
+                                                <span class="input-group-text bg-white d-block ">
+                                                    <i class="fa-solid fa-calendar"></i>
+                                                </span>
+                                            </span>
+                                    </div>
+                                <label for="id_period_po">Период по:</label>
+                                    <div class="input-group date" id="period_end">
+                                        <input type="text" class="form-control mb-3"  name="end" id="period_po" />
+                                            <div class="input-group-addon">
+                                                <span class="input-group-append">
+                                                    <span class="input-group-text bg-white d-block">
+                                                       <i class="fa-solid fa-calendar"></i>
+                                                    </span>
+                                                </span>
+                                            </div>
+                                    </div>
+                        </div> 
+                        <div class="row justify-content-end m-0">
+                        <button type="submit"  class="btn btn-primary " id="log_btn">Получить</button>
+                        </div>
+                    </div>
+            </form>     
+</div> 
 {% endblock sidebar %}

@@ -17,8 +17,8 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "django_selenium.settings")
 django.setup()
 from mos_sel.models import Flat
 
-URL_LOGIN='https://login.mos.ru/sps/login/methods/password?bo=%2Fsps%2Foauth%2Fae%3Fscope%3Dprofile%2Bopenid%2Bcontacts%2Busr_grps%26response_type%3Dcode%26redirect_uri%3Dhttps%3A%2F%2Fwww.mos.ru%2Fapi%2Facs%2Fv1%2Flogin%2Fsatisfy%26client_id%3Dmos.ru'
-GET_USLUGA_URL='https://www.mos.ru/pgu/ru/app/guis/062301/#step_1'
+#URL_LOGIN='https://login.mos.ru/sps/login/methods/password?bo=%2Fsps%2Foauth%2Fae%3Fscope%3Dprofile%2Bopenid%2Bcontacts%2Busr_grps%26response_type%3Dcode%26redirect_uri%3Dhttps%3A%2F%2Fwww.mos.ru%2Fapi%2Facs%2Fv1%2Flogin%2Fsatisfy%26client_id%3Dmos.ru'
+#GET_USLUGA_URL='https://www.mos.ru/pgu/ru/app/guis/062301/#step_1'
 KOD_PLAT_INPUT='//*[@id="epd_field"]'
 BUUTON_FIND='//*[@id="data"]/div[1]/div[1]/div[3]/div/div[1]/a'
 BUTTON_SHOW_MORE='//*[@id="step_2"]/fieldset/div[2]/div[3]/button'
